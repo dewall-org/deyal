@@ -1,4 +1,19 @@
 .home {
+    .site-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .content-wrap {
+        flex: 1;
+    }
+
+    .footer {
+        position: sticky;
+        top: 100%;
+    }
+
     .heading {
         @media only screen and (max-width: 576px) {
             background: rgba($color: $color-white, $alpha: .2);
@@ -6,8 +21,9 @@
             border-radius: 10px;
         }
     }
+
     .post-create-button-wrapper {
-        .modal-body{
+        .modal-body {
             padding: 2rem 1.25rem;
 
             input {
@@ -21,7 +37,8 @@
                 padding: 10px;
             }
 
-            input:focus, textarea:focus {
+            input:focus,
+            textarea:focus {
                 border: 1px solid $color-primary;
                 box-shadow: 0 0 0 .25rem rgba($color-primary, .25)
             }

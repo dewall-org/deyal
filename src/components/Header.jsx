@@ -3,14 +3,6 @@ import { NavLink } from "react-router-dom"
 const Header = () => {
     return (
         <header className="header">
-            <div className="topbar py-2">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-6 text-center text-md-start">All Rights Reserved &copy; 2021</div>
-                        <div className="col-md-6 text-center text-md-end pe-0 pe-md-3">Crafted By Xayed</div>
-                    </div>
-                </div>
-            </div>
             <nav className="navbar navbar-expand-md navbar-light">
                 <div className="container">
                     <NavLink className="navbar-brand" to='/'>দেয়াল</NavLink>

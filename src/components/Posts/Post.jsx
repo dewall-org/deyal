@@ -28,7 +28,7 @@ const Post = ({ name, description, date, time }, ref) => {
                     </div>
                     <div className="right px-4">
                         <div className="name text-center text-sm-start">
-                            <h2>{name === '' ? 'Anonymous' : name}</h2>
+                            <h5>{name === '' ? 'Anonymous' : name}</h5>
                         </div>
                         <div className="datetime text-center text-sm-start">
                             <h4>{date} || {time}</h4>
