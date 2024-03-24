@@ -20,8 +20,8 @@ const Home = () => {
             <footer className="footer py-2" style={{ backgroundColor: 'white' }}>
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-3 text-center text-md-start">All Rights Reserved &copy; 2023</div>
-                        <div className="col-md-3 text-center text-md-end pe-0 pe-md-3">Crafted By Xayed</div>
+                        <div className="col-md-3 text-center text-md-start">All Rights Reserved &copy; 2024</div>
+                        <div className="col-md-3 text-center text-md-end pe-0 pe-md-3">Crafted By Xayed and Uthsob</div>
                     </div>
                 </div>
             </footer>
