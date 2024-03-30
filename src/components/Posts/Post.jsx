@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import Card from '../Card'
+import React, { useState } from 'react';
+import { doc, updateDoc, increment } from 'firebase/firestore';
+import { db } from '../../firebase';
+import Card from '../Card';
 
-const Post = ({ name, description, date, time }, ref) => {
+const Post = ({ _id, name, description, date, time, fireCount }, ref) => {
+    const [expanded, setExpanded] = useState(false);
 
-    const [expanded, setExpanded] = useState(false)
-    const [hasMore, setHasMore] = useState(false)
-    const [isShort, setIsShort] = useState(false)
+    const handleExpansion = () => {
+        setExpanded(prevExpanded => !prevExpanded);
+    };
 
-    const handleExpansion = e => {
-        console.log(e)
-        setExpanded(prevExpanded => !prevExpanded)
-    }
-
-    useEffect(() => {
-        if (description && description.length > 400)
-            setHasMore(true)
-        if (description && description.length <= 100)
-            setIsShort(true)
-    }, [description])
+    const handleFireReaction = async () => {
+        const postDocRef = doc(db, 'posts', _id);
+        try {
+            await updateDoc(postDocRef, {
+                fireCount: increment(1)
+            });
+        } catch (error) {
+            console.error("Error updating document: ", error);
+        }
+    };
 
     return (
         <div className='my-5 py-3' ref={ref}>
@@ -35,14 +37,22 @@ const Post = ({ name, description, date, time }, ref) => {
                         </div>
                     </div>
                 </div>
-                <div className={`card__details p-4 ${isShort ? 'short' : ''}`}>
-                    {hasMore ? expanded ? description : description.slice(0, 240) + '... ' : description}
-                    {expanded ? <br /> : ''}
-                    {hasMore ? <button className="btn btn-expand" onClick={handleExpansion}> {expanded ? 'Show Less' : 'Show More'}</button> : ''}
+                <div className={`card__details p-4 ${description.length <= 100 ? 'short' : ''}`}>
+                    {description}
+                    {description.length > 100 ? (
+                        <button className="btn btn-expand" onClick={handleExpansion}>
+                            {expanded ? 'Show Less' : 'Show More'}
+                        </button>
+                    ) : null}
+                </div>
+                <div className="card__reactions p-4 d-flex justify-content-start align-items-center">
+                    <button className="btn btn-reaction" onClick={handleFireReaction}>
+                        🔥 {fireCount}
+                    </button>
                 </div>
             </Card>
         </div>
-    )
-}
+    );
+};
 
-export default React.memo(React.forwardRef(Post))
+export default React.memo(React.forwardRef(Post));

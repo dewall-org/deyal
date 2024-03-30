@@ -22,6 +22,7 @@ const Posts = () => {
                 ...doc.data(),
                 date: doc.data().createdAt.toDate().toLocaleDateString(),
                 time: doc.data().createdAt.toDate().toLocaleTimeString(),
+                fireCount: doc.data().fireCount || 0,
             }));
 
             setPosts(newPosts);
@@ -43,10 +44,12 @@ const Posts = () => {
             {!loading && !error && posts.map(post => (
                 <Post
                     key={post._id}
+                    _id={post._id}
                     name={post.name}
                     description={post.description}
                     date={post.date}
                     time={post.time}
+                    fireCount={post.fireCount}
                 />
             ))}
         </div>
