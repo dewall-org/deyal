@@ -37,9 +37,9 @@ const Post = ({ _id, name, description, date, time, fireCount }, ref) => {
                         </div>
                     </div>
                 </div>
-                <div className={`card__details p-4 ${description.length <= 100 ? 'short' : ''}`}>
-                    {description}
-                    {description.length > 100 ? (
+                <div className={`card__details p-4 ${description.length <= 200 ? 'short' : ''}`}>
+                    {description.length > 200 && !expanded ? `${description.substring(0, 200)}...` : description}
+                    {description.length > 200 ? (
                         <button className="btn btn-expand" onClick={handleExpansion}>
                             {expanded ? 'Show Less' : 'Show More'}
                         </button>
